@@ -1,5 +1,6 @@
 package com.assosiations.hybernate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 
 @Entity(name="Phone")
 public class Phone {
+	
 	@Id
 	@GeneratedValue
 	private int id;
@@ -18,7 +20,7 @@ public class Phone {
 	@Column(name="number")
 	private String number;
 	 
-	 @ManyToOne
+	 @ManyToOne(cascade=CascadeType.PERSIST)
 	    @JoinColumn(name = "person_id",
 	            foreignKey = @ForeignKey(name = "PERSON_ID_FK")
 

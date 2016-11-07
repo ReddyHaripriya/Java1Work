@@ -1,4 +1,4 @@
-package com.assosiations.hybernate;
+package com.onetomany;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,10 +27,18 @@ public class Test {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Person person=new Person();
-		Phone phone=new Phone("7207506877");
-		phone.setPerson(person);
-	session.save(phone);
-	session.save(person);
+		Phones phones=new Phones("8985894205");
+		Phones phone1=new Phones("8612365468");
+		Person person1=new Person();
+		
+		person.getPhones().add(phone1);
+		person.getPhones().add(phones);
+		person1.getPhones().add(phone1);
+		person1.getPhones().add(phones);
+		session.save(person);
+		session.save(phone1);
+		session.save(phones);
+	
 		
 		session.getTransaction().commit();
 		session.close();
